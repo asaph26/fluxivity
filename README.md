@@ -1,11 +1,20 @@
 # Fluxivity
 
-Fluxivity is an experimental package to study the effect of building a reactive graph. The
-code in the library can be improved to be better at code. 
-
-**⚠️ Its important to note that this package hasn't been tested as it was hacked together on a whim. This notice will be removed once this condition is false**
+Fluxivity is an experimental package to study the effect of building a reactive graph. 
 
 Package is available on pub.dev [here](https://pub.dev/packages/fluxivity)
+
+## Why this package
+
+Despite the availability of a lot of state management solutions, I often find myself 
+looking for simpler solutions that are bound by the following principles
+
+* App state should be global
+* View Models should only contain value/data accessors and not the data themselves
+* It should be possible to construct a graph like structure of App state.
+* It should be possible to access latest data without waiting on a value
+* It should be possible to track changes to data if required
+* Have a functional approach to dealing with changes
 
 ## Basic functionality
 
@@ -26,22 +35,10 @@ is always dependent on the classes it depends on for its value. The value of a c
 updated everytime the value of the dependent classes change. This can be used where derived values 
 are necessary. 
 
-## Why this package
-
-As state management solutions have exploded, I often find myself looking for simpler solutions 
-that help with the following principles
-
-* App state should be global
-* View Models should only contain value/data accessors and not the data themselves
-* It should be possible to construct a graph like structure of App state.
-* It should be possible to access latest data without waiting on a value
-* It should be possible to track changes to data if required
-* Have a functional approach to dealing with changes
-
-While people might disagree with the above principles, I believe there is a niche for them in the
-ecosystem where it adds value, 
-
 ## Example Usage
+
+You can also refer to the test files for example usage. I will add additional example apps when I 
+find more time
 
 ```dart
 CurrentPage page = CurrentPage({location: 'test'});
@@ -75,3 +72,6 @@ location.value
 // newLocation
 
 ```
+
+## License
+MIT License at [LICENSE](LICENSE)
