@@ -12,3 +12,8 @@
 * Tests are added. Use `dart test` to run these
 * Added class documentation internally
 * Updated readme
+
+## 1.1.1
+* Downgraded async package to not clash with flutter_test's async package version
+* Included example app
+* Exported Snapshot class to be usable in Streams
