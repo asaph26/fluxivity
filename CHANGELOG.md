@@ -17,3 +17,7 @@
 * Downgraded async package to not clash with flutter_test's async package version
 * Included example app
 * Exported Snapshot class to be usable in Streams
+
+## 1.2.0
+* Removed the graph dependency methods from reactive to be implemented later
+* Added the temperature conversion example code

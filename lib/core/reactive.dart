@@ -48,39 +48,10 @@ class Reactive<T> {
   @override
   int get hashCode => _value.hashCode;
 
-  /// Adds a parent to the current instance and associates the current [Reactive] with an accessor. This is used to create a tree of [Reactive] instances.
-  void addParent(String childAccessor, Reactive parent) {
-    _setChildren(parent, this, childAccessor);
-  }
-
-  void _setChildren(Reactive parent, Reactive child, String accessor) {
-    if (parent._children.containsKey(accessor)) {
-      parent._children[accessor]?.add(child);
-    } else {
-      parent._children[accessor] = [child];
-    }
-  }
-
-  /// Returns the first child of the specified type associated with the given accessor.
-  Reactive<ChildType> getOneChild<ChildType>(String accessor) {
-    if (_children.containsKey(accessor)) {
-      return _children[accessor]?.first as Reactive<ChildType>;
-    }
-    throw Exception('No child found with accessor: $accessor');
-  }
-
-  /// Returns all children of the specified type associated with the given accessor.
-  List<Reactive<ChildType>> getAllChildren<ChildType>(String accessor) {
-    if (_children.containsKey(accessor)) {
-      return _children[accessor] as List<Reactive<ChildType>>;
-    }
-    throw Exception('No child found with accessor: $accessor');
-  }
-
   /// Adds an effect function that gets called whenever the value changes.
-  void addEffect(Function(T) effect) {
+  void addEffect(Function(Snapshot<T>) effect) {
     stream.listen((snapshot) {
-      effect(snapshot.newValue);
+      effect(snapshot);
     });
   }
 }

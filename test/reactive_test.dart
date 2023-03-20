@@ -15,7 +15,7 @@ void main() {
       final values = <int>[];
 
       reactive.addEffect((value) {
-        values.add(value);
+        values.add(value.newValue);
       });
 
       reactive.value = 1;
@@ -33,7 +33,7 @@ void main() {
       final values = <int>[];
 
       reactive.addEffect((value) {
-        values.add(value);
+        values.add(value.newValue);
       });
 
       reactive.value = 1;

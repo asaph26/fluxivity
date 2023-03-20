@@ -77,4 +77,82 @@ COMING SOON
 
 ## Temperature Convertor
 
-COMING SOON
+```dart
+import 'package:flutter/material.dart';
+import 'package:fluxivity/fluxivity.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Temperature Converter')),
+        body: const Center(child: TemperatureConverter()),
+      ),
+    );
+  }
+}
+
+class TemperatureConverter extends StatelessWidget {
+  const TemperatureConverter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        CelsiusInput(),
+        SizedBox(height: 16),
+        FahrenheitDisplay(),
+      ],
+    );
+  }
+}
+
+final celsius = Reactive<double>(0);
+final fahrenheit = Computed<double>(
+  [celsius],
+  (sources) => sources[0].value * 9 / 5 + 32,
+);
+
+class CelsiusInput extends StatelessWidget {
+  const CelsiusInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      keyboardType: TextInputType.numberWithOptions(decimal: true),
+      onChanged: (value) {
+        celsius.value = double.tryParse(value) ?? 0;
+      },
+      decoration: InputDecoration(
+        labelText: 'Celsius',
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
+}
+
+class FahrenheitDisplay extends StatelessWidget {
+  const FahrenheitDisplay({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<Snapshot<double>>(
+      stream: fahrenheit.stream,
+      builder: (context, snapshot) {
+        return Text(
+          'Fahrenheit: ${fahrenheit.value.toStringAsFixed(2)}',
+          style: Theme.of(context).textTheme.headline4,
+        );
+      },
+    );
+  }
+}
+```
