@@ -9,7 +9,7 @@ Package is available on pub.dev [here](https://pub.dev/packages/fluxivity)
 Despite the availability of a lot of state management solutions, I often find myself 
 looking for simpler solutions that are bound by the following principles
 
-* App state should be global
+* Global app state
 * View Models should only contain value/data accessors and not the data themselves
 * It should be possible to construct a graph like structure of App state.
 * It should be possible to access latest data without waiting on a value
@@ -72,6 +72,9 @@ location.value
 // newLocation
 
 ```
+
+## Example Use Cases of Fluxivity
+Read more examples at [example/README.md](example/README.md)
 
 ## License
 MIT License at [LICENSE](LICENSE)
