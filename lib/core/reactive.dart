@@ -15,8 +15,6 @@ class Reactive<T> {
   T _value;
   T get value => _value;
 
-  final Map<String, List<Reactive<dynamic>>> _children = {};
-
   /// Returns a stream of snapshots containing the current and new values.
   Stream<Snapshot<T>> get stream => _controller.stream;
   final _controller = BehaviorSubject<Snapshot<T>>();
