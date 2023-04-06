@@ -21,3 +21,10 @@
 ## 1.2.0
 * Removed the graph dependency methods from reactive to be implemented later
 * Added the temperature conversion example code
+
+## 1.3.0 (2023-04-07)
+* Added: ReactiveListExtensions for providing reactive capabilities to regular lists, allowing users to seamlessly observe and react to list changes.
+  * The reactive getter has been added to the List class, enabling conversion of regular lists into reactive lists.
+  * ReactiveListExtensions includes overrides for common list manipulation methods, ensuring that the reactive list emits updates when modified.
+  * A new addEffect method allows users to define custom functions (effects) that will be executed automatically whenever the list is modified.
+  * The unwrap method has been introduced to convert a reactive list back to a regular list when needed.
