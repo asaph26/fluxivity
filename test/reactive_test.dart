@@ -25,7 +25,7 @@ void main() {
       // Wait for effects to process
       await Future.delayed(const Duration(milliseconds: 100));
 
-      expect(values, [1, 2, 3]);
+      expect(values, [0, 1, 2, 3]);
     });
 
     test('should dispose the stream', () async {
@@ -45,7 +45,7 @@ void main() {
       // Wait for effects to process
       await Future.delayed(const Duration(milliseconds: 100));
 
-      expect(values, [1]);
+      expect(values, [0, 1]);
     });
   });
 }

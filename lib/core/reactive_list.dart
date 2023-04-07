@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import '../plugins/plugin_abstract.dart';
 import 'reactive.dart';
 import 'snapshot.dart';
 
@@ -8,13 +9,21 @@ extension ReactiveListExtensions<E> on List<E> {
         Reactive<ReactiveListWrapper<E>>(ReactiveListWrapper<E>(this));
     return reactiveList;
   }
+
+  Reactive<ReactiveListWrapper<E>> toReactive(
+      {List<FluxivityMiddleware<List<E>>>? middlewares}) {
+    final reactiveList = Reactive<ReactiveListWrapper<E>>(
+        ReactiveListWrapper<E>(this, middlewares: middlewares));
+    return reactiveList;
+  }
 }
 
 class ReactiveListWrapper<E> extends DelegatingList<E> {
   final Reactive<List<E>> _reactiveList;
 
-  ReactiveListWrapper(List<E> list)
-      : _reactiveList = Reactive<List<E>>(list),
+  ReactiveListWrapper(List<E> list,
+      {List<FluxivityMiddleware<List<E>>>? middlewares})
+      : _reactiveList = Reactive<List<E>>(list, middlewares: middlewares),
         super(list);
 
   @override
@@ -68,13 +77,13 @@ class ReactiveListWrapper<E> extends DelegatingList<E> {
   }
 
   @override
-  void removeWhere(bool test(E element)) {
+  void removeWhere(bool Function(E element) test) {
     _reactiveList.value.removeWhere(test);
     _reactiveList.value = _reactiveList.value;
   }
 
   @override
-  void retainWhere(bool test(E element)) {
+  void retainWhere(bool Function(E element) test) {
     _reactiveList.value.retainWhere(test);
     _reactiveList.value = _reactiveList.value;
   }
@@ -86,7 +95,7 @@ class ReactiveListWrapper<E> extends DelegatingList<E> {
   }
 
   @override
-  void sort([int compare(E a, E b)?]) {
+  void sort([int Function(E a, E b)? compare]) {
     _reactiveList.value.sort(compare);
     _reactiveList.value = _reactiveList.value;
   }
@@ -104,8 +113,8 @@ class ReactiveListWrapper<E> extends DelegatingList<E> {
   }
 
   @override
-  void replaceRange(int start, int end, Iterable<E> newContents) {
-    _reactiveList.value.replaceRange(start, end, newContents);
+  void replaceRange(int start, int end, Iterable<E> iterable) {
+    _reactiveList.value.replaceRange(start, end, iterable);
     _reactiveList.value = _reactiveList.value;
   }
 

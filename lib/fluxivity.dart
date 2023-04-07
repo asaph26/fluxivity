@@ -4,3 +4,4 @@ export 'core/reactive.dart';
 export 'core/computed.dart';
 export 'core/snapshot.dart';
 export 'core/reactive_list.dart';
+export 'plugins/plugin_abstract.dart';
