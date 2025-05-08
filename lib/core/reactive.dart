@@ -28,7 +28,7 @@ class Reactive<T> {
     if (_batchUpdateCounter > 0) {
       _batchUpdateCounter--;
 
-      if (_batchUpdateCounter == 0) {
+      if (_batchUpdateCounter == 0 && _bufferedEvents.isNotEmpty) {
         if (publishAll) {
           for (var event in _bufferedEvents) {
             _controller.add(event);

@@ -72,3 +72,5 @@ example/counter/app.*.map.json
 example/counter/android/app/debug
 example/counter/android/app/profile
 example/counter/android/app/release
+
+.cline/task-logs

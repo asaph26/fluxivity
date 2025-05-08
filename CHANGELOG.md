@@ -36,3 +36,24 @@
 - Error handling in computed flow, providing a more robust implementation and better error handling for users when working with computed values.
 - Batched updates functionality, enabling users to perform multiple updates to reactive values without triggering an update for each individual change. This reduces unnecessary computations and improves performance.
 - Example usage with the Hive package, demonstrating how to integrate Fluxivity with Hive for efficient and reactive data storage and retrieval in Flutter applications.
+
+## [1.5.0] - 2025-05-08
+
+### Updated
+- Dependency versions for collections, async and rxdart
+
+## [1.6.0] - 2025-05-08
+
+### Added
+- Improved batch update handling with empty list protection
+- Enhanced subscription management in Computed class
+- Better resource cleanup with more robust disposal methods
+
+### Changed
+- Simplified ReactiveList implementation for better reliability. Replaced complex wrapper approach with a more direct implementation
+- Improved stability for deeply nested reactive structures
+
+### Fixed
+- Resolved issues with list mutation notifications
+- Fixed "Bad state: No element" errors in batch updates
+- Addressed timing issues in asynchronous operations

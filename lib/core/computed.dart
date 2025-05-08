@@ -27,7 +27,7 @@ class Computed<T> {
     if (_batchUpdateCounter > 0) {
       _batchUpdateCounter--;
 
-      if (_batchUpdateCounter == 0) {
+      if (_batchUpdateCounter == 0 && _bufferedEvents.isNotEmpty) {
         if (publishAll) {
           for (var event in _bufferedEvents) {
             _controller.add(event);
@@ -56,7 +56,7 @@ class Computed<T> {
     _value = _compute(_sources);
     _controller.add(Snapshot(_value, _value));
 
-    StreamGroup.merge(_sources.map((source) => source.stream)).listen((_) {
+    _subscription = StreamGroup.merge(_sources.map((source) => source.stream)).listen((_) {
       final T newValue;
       try {
         newValue = _compute(_sources);
@@ -94,8 +94,14 @@ class Computed<T> {
   /// Returns the current computed value.
   T get value => _value;
 
-  /// Disposes of the internal stream controller.
+  StreamSubscription<dynamic>? _subscription;
+  bool _isDisposed = false;
+
+  /// Disposes of the internal stream controller and cancels subscriptions.
   void dispose() {
+    _isDisposed = true;
+    _subscription?.cancel();
+    _subscription = null;
     _controller.close();
   }
 
