@@ -7,7 +7,8 @@ extension ReactiveListExtensions<E> on List<E> {
     return Reactive<List<E>>(List<E>.from(this));
   }
 
-  Reactive<List<E>> toReactive({List<FluxivityMiddleware<List<E>>>? middlewares}) {
+  Reactive<List<E>> toReactive(
+      {List<FluxivityMiddleware<List<E>>>? middlewares}) {
     return Reactive<List<E>>(List<E>.from(this), middlewares: middlewares);
   }
 }
@@ -17,7 +18,7 @@ extension ReactiveListHelpers<E> on Reactive<List<E>> {
   void addEffect(Function(Snapshot<List<E>>) effect) {
     stream.listen(effect);
   }
-  
+
   // Helper methods to support the tests with the new implementation
   List<E> unwrap() {
     return value;

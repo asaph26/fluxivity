@@ -56,7 +56,8 @@ class Computed<T> {
     _value = _compute(_sources);
     _controller.add(Snapshot(_value, _value));
 
-    _subscription = StreamGroup.merge(_sources.map((source) => source.stream)).listen((_) {
+    _subscription =
+        StreamGroup.merge(_sources.map((source) => source.stream)).listen((_) {
       final T newValue;
       try {
         newValue = _compute(_sources);
@@ -95,11 +96,9 @@ class Computed<T> {
   T get value => _value;
 
   StreamSubscription<dynamic>? _subscription;
-  bool _isDisposed = false;
 
   /// Disposes of the internal stream controller and cancels subscriptions.
   void dispose() {
-    _isDisposed = true;
     _subscription?.cancel();
     _subscription = null;
     _controller.close();
