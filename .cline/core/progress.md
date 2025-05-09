@@ -6,7 +6,16 @@ Fluxivity is in a **stable maintenance phase with active improvements** with all
 
 ## Version History
 
-### v1.6.0 (Latest) - 2025-05-08
+### v1.7.0 (Latest) - 2025-05-09
+- ✅ Implemented ReactiveMap with extension methods for Maps
+- ✅ Implemented ReactiveSet with extension methods for Sets  
+- ✅ Created comprehensive test suites for both new implementations
+- ✅ Expanded the reactive collection ecosystem with consistent APIs
+- ✅ Standardized the reactive API pattern across all collection types
+- ✅ Fixed middleware integration with collection operations
+- ✅ Updated documentation and changelog
+
+### v1.6.0 - 2025-05-08
 - ✅ Simplified ReactiveList implementation
 - ✅ Fixed notification issues with list mutations
 - ✅ Improved batch update handling
@@ -39,15 +48,16 @@ Fluxivity is in a **stable maintenance phase with active improvements** with all
 |----------------------------|-------------|--------------------------------------------- |
 | **Core Reactive System**   | ✅ Complete | Fully implemented and tested                 |
 | **Computed Values**        | ✅ Complete | Dependency tracking and updates working      |
-| **Reactive Collections**   | ✅ Complete | Simplified implementation with better performance |
+| **Reactive List**          | ✅ Complete | Simplified implementation with better performance |
+| **Reactive Map**           | ✅ Complete | Key-value collection with reactive capabilities |
+| **Reactive Set**           | ✅ Complete | Unique collection with reactive capabilities |
 | **Middleware System**      | ✅ Complete | Interface stable, more prebuilt plugins WIP  |
 | **Batch Updates**          | ✅ Complete | Working in both Reactive and Computed        |
 | **Null Safety**            | 🔄 In Progress | Core implementation done, edge cases WIP  |
 | **Flutter Integration**    | 🔄 In Progress | Basic integration works, widgets planned  |
-| **Reactive Map/Set**       | 📝 Planned  | Planning underway based on List implementation |
 | **Flutter Hooks**          | 📝 Planned  | Not yet started                             |
 | **DevTools Support**       | 📝 Planned  | Initial research started                     |
-| **Performance Optimization**| 🔄 In Progress | ReactiveList improvements completed, more planned |
+| **Performance Optimization**| 🔄 In Progress | Collection implementations optimized, more planned |
 
 ## Test Coverage
 

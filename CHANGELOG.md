@@ -57,3 +57,16 @@
 - Resolved issues with list mutation notifications
 - Fixed "Bad state: No element" errors in batch updates
 - Addressed timing issues in asynchronous operations
+
+## [1.7.0] - 2025-05-09
+
+### Added
+- Added support for reactive Maps through the `ReactiveMapExtensions`
+- Added support for reactive Sets through the `ReactiveSetExtensions`
+
+### Changed
+- Standardized the reactive collection API pattern across Lists, Maps, and Sets
+- Enhanced documentation for all reactive collection types
+
+### Fixed
+- Fixed middleware integration with collection operations
