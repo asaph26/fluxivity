@@ -1,7 +1,7 @@
 name: fluxivity
 description: Fluxivity is a package that allows you to build a reactive graph of
   your application's state.
-version: 1.7.0
+version: 1.8.0
 homepage: https://github.com/asaph26/fluxivity
 
 environment:

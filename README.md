@@ -883,6 +883,60 @@ reactive.value = 8;
 reactive.endBatchUpdate(publishAll: true); // Output: 5, 6, 7, 8
 ```
 
+## Memoization
+
+Fluxivity provides a memoization utility for `Computed` instances to optimize performance by caching computation results. This is especially useful for expensive computations that depend on reactive values that might change to the same values repeatedly.
+
+### Basic Usage
+
+The `memoize` function creates a memoized version of a `Computed` instance that caches the results based on the values of its source reactives:
+
+```dart
+import 'package:fluxivity/fluxivity.dart';
+
+// Create a normal computed instance
+final count = Reactive(0);
+final expensiveComputation = Computed([count], (sources) {
+  // This could be an expensive operation
+  print('Computing value...');
+  return sources[0].value * 100;
+});
+
+// Create a memoized version with a cache size of 5
+final memoizedComputation = memoize(expensiveComputation, cacheSize: 5);
+
+// When accessed with the same input values, the cached result is returned
+memoizedComputation.value; // Prints: "Computing value..." and returns 0
+memoizedComputation.value; // Returns 0 without printing (cached)
+
+// When the source value changes, it recomputes
+count.value = 1;
+memoizedComputation.value; // Prints: "Computing value..." and returns 100
+
+// If we change back to a previously computed value, it uses the cache
+count.value = 0;
+memoizedComputation.value; // Returns 0 without printing (cached)
+```
+
+The memoization implementation uses an LRU cache strategy
+
+```dart
+// Create with different cache sizes based on your needs
+final smallCache = memoize(computed, cacheSize: 1);  // Default size
+final mediumCache = memoize(computed, cacheSize: 10);
+final largeCache = memoize(computed, cacheSize: 100);
+```
+
+### When to Use Memoization
+
+Memoization is most beneficial when:
+
+1. The computation is expensive (complex calculations, string formatting, etc.)
+2. The input values repeat frequently
+3. The computed output is used in multiple places
+
+For simple computations or when values rarely repeat, the overhead of memoization might outweigh its benefits.
+
 ## Usage along with storage providers
 
 Fluxivity can be used along with existing storage providers like Hive, Shared Preferences, etc. The following is an example of how you can use Fluxivity along with Hive. This assumes you have setup Hive and its type adapters, you could create a custom class called HiveReactive which extends the Reactive class and implements the methods to save and load from Hive.

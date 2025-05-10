@@ -70,3 +70,14 @@
 
 ### Fixed
 - Fixed middleware integration with collection operations
+
+## [1.8.0] - 2025-05-10
+
+### Added
+- Memoization support for `Computed` instances through the `memoize` function
+- LRU (Least Recently Used) cache implementation with configurable cache size
+- Delegation pattern for memoized computed values to preserve the original API
+
+### Changed
+- Exposed `sources` getter in the `Computed` class to support memoization
+- Enhanced README with documentation for the memoization feature

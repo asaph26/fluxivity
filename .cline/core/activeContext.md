@@ -36,13 +36,21 @@ The Fluxivity library is currently in a stable maintenance phase with active imp
 
 ### Recently Completed Tasks
 
-1. **Reactive Map and Set Implementation** ✅
+1. **Memoization Support for Computed** ✅
+   - Implemented memoization for the `Computed` class using delegation pattern
+   - Added LRU cache mechanism with configurable cache size
+   - Exposed `sources` getter in `Computed` class to support memoization
+   - Updated documentation and README with memoization examples
+   - Version update to 1.8.0
+   - [Task Log](../task-logs/task-log_2025-05-10-00-30_memoization.md)
+
+2. **Reactive Map and Set Implementation** ✅
    - Implemented ReactiveMap with the same simplified approach as ReactiveList
    - Implemented ReactiveSet with consistent API patterns
    - Created comprehensive test suites for both implementations
    - Updated library exports and documentation
    - Version update to 1.7.0
-   - [Task Log](../.cline/task-logs/task-log_2025-05-09-22-28_reactive-map-set-implementation.md)
+   - [Task Log](../task-logs/task-log_2025-05-09-22-28_reactive-map-set-implementation.md)
 
 2. **ReactiveList Implementation Improvements** ✅
    - Replaced complex DelegatingList wrapper with simpler direct approach
